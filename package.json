@@ -4,6 +4,7 @@
   "description": "rss feed to video file",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,19 @@
   "bugs": {
     "url": "https://github.com/gitHub-Randy/rsstovideo/issues"
   },
-  "homepage": "https://github.com/gitHub-Randy/rsstovideo#readme"
+  "homepage": "https://github.com/gitHub-Randy/rsstovideo#readme",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/runtime": "^7.6.2",
+    "dotenv": "^8.1.0",
+    "handlebars": "^4.4.2",
+    "nodemon": "^1.19.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2"
+  }
 }
