@@ -4,11 +4,14 @@ let captureWebsite = require('capture-website');
 let puppeteer = require('puppeteer');
 let cheerio = require('cheerio');
 let id = [];
-let url = `file:///C:/Users/Randy.Anft/Desktop/RSSTOVIDEO/src/test.html`;
+let url = process.cwd()+`\\src\\test.html`;
 
 export default class ElementScreenTaker {
     constructor(value) {
+        console.log(url)
+
     }
+
 
     // takes a screen shot from each newsarticle on the generated html page'
     //test: returns image Path
