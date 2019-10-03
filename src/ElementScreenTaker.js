@@ -8,7 +8,6 @@ let url = process.cwd()+`\\src\\test.html`;
 
 export default class ElementScreenTaker {
     constructor(value) {
-        console.log(url)
 
     }
 
@@ -21,14 +20,12 @@ export default class ElementScreenTaker {
         let time = new Date();
         let t = time.getDate()+"_"+time.getMonth()+"_"+time.getFullYear()+"_"+time.getHours()+"_"+time.getMinutes();
         for (let index = 0; index < id.length; index++) {
-            
-            console.log(id[index]);
-            await captureWebsite.file(url, `${process.env.IMAGE_PATH+'//'+t+'_'+index}.png`, { waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
+                await captureWebsite.file(url, `${process.env.IMAGE_PATH+'//'+t+'_'+index}.png`, { waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
                 `#${id[index-1]}`,
                 `#${id[index+1]}`
             ]  });
         }
-
+        
         return `${process.env.IMAGE_PATH+'//'+t+'_'}`;
     }
 

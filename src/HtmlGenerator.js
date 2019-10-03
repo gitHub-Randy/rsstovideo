@@ -17,11 +17,10 @@ export default class HtmlGenerator {
     }
 
 
-    //result != empty
     prepContent(data) {
         let source = fs.readFileSync(inFile, 'utf8');
         let template = handlebars.compile(source, { stric: true });
-        result = template(data);
+        result = template();
     }
 
  
