@@ -1,0 +1,42 @@
+{
+  "name": "rsstovideo",
+  "version": "1.0.0",
+  "description": "rss feed to video file",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitHub-Randy/rsstovideo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gitHub-Randy/rsstovideo/issues"
+  },
+  "homepage": "https://github.com/gitHub-Randy/rsstovideo#readme",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/runtime": "^7.6.2",
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "capture-website": "^0.4.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.1.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "handlebars": "^4.4.2",
+    "install": "^0.13.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.3",
+    "puppeteer": "^1.20.0",
+    "rss-parser": "^3.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2"
+  }
+}

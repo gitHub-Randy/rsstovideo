@@ -1,0 +1,27 @@
+body{
+    background-color:	#2C68A0
+}
+h5{
+    color: 	#7F1B61;
+}
+h1{
+    color: aliceblue
+}
+
+p{
+    color: #2C68A0;
+}
+#items{
+    margin-left: 25%;
+    margin-bottom: 50%;
+    width: 50%;
+  
+}
+
+
+
+
+.col-md-4{
+    padding: 5%;
+}
+

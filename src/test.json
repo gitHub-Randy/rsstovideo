@@ -1,0 +1,10 @@
+{
+    "title" : "dit is een test titel!",
+    "content": "dit is een test content",
+    "auteur": {
+        "naam": "Jim",
+        "achternaam": "Jimminy"
+    },
+    "conditionIsTrue": false,
+    "css": "../Media/Newspages/style.css"
+}
