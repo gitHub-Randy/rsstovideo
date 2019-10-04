@@ -14,7 +14,7 @@ let movieMaker = new MovieMaker();
 let feed;
 async function makeNews() {
     try{
-        feed = await feedReader.RetrieveData();
+        feed = await feedReader.RetrieveData(process.env.RSS_URL);
         htmlGenerator.makeHtml(feed);
         let imagePath =  await screenShotMaker.takeScreenShots();
         // await movieMaker.makeMovie(imagePath);

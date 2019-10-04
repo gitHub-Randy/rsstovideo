@@ -4,11 +4,10 @@ let captureWebsite = require('capture-website');
 let puppeteer = require('puppeteer');
 let cheerio = require('cheerio');
 let id = [];
-let url = process.cwd()+`\\src\\test.html`;
+let url = process.cwd() + `\\src\\test.html`;
 
 export default class ElementScreenTaker {
     constructor(value) {
-
     }
 
 
@@ -16,43 +15,57 @@ export default class ElementScreenTaker {
     //test: returns image Path
     //aantal plaatjes maken via varible
     async takeScreenShots() {
-        try{
-            await this.getCssSelectors();
+        try {
+            await this.getCssSelectors(process.env.selector);
             let time = new Date();
-            let t = time.getDate()+"_"+time.getMonth()+"_"+time.getFullYear()+"_"+time.getHours()+"_"+time.getMinutes();
+            let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
             for (let index = 0; index < id.length; index++) {
-                    await captureWebsite.file(url, `${process.env.IMAGE_PATH+'//'+t+'_'+index}.png`, { waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
-                    `#${id[index-1]}`,
-                    `#${id[index+1]}`
-                ]  });
+                await this.captureScreens(t,index);
             }
-            
-            return `${process.env.IMAGE_PATH+'//'+t+'_'}`;
-        }catch(err){
+            return `${process.env.IMAGE_PATH + '//' + t + '_'}`;
+        } catch (err) {
             console.log("could not create screenshots of rss feed!");
             throw new Error(err);
         }
-       
+
     }
 
+    async captureScreens(outputName, index) {
+        console.log(url);
+        await captureWebsite.file(url, `${process.env.IMAGE_PATH + '//' + outputName + '_' + index}.png`, {
+            waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
+                `#${id[index - 1]}`,
+                `#${id[index + 1]}`
+            ]
+        });
+
+    }
+
+    getId() {
+        return id;
+    }
+
+    setUrl(u){
+        url = u;
+    }
     //test: id != null
 
     //variable toe voegen i.e. .card etc
-    async getCssSelectors(){
-        try{
-            const browser = await puppeteer.launch({headless: false});
+    async getCssSelectors(selector) {
+        try {
+            const browser = await puppeteer.launch({ headless: false });
             const page = await browser.newPage();
             await page.goto(url);
             let content = await page.content();
             browser.close();
-            cheerio(`.card`, content).each(function () {
-                id[id.length] = cheerio(this)[0].attribs.id;   
+            cheerio(selector, content).each(function () {
+                id[id.length] = cheerio(this)[0].attribs.id;
             });
-        }catch(err){
+        } catch (err) {
             console.log("the rss feed template is corrupt or empty!");
             throw new Error(err);
         }
-        
+
     }
 }
 
