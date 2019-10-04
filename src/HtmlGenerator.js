@@ -12,15 +12,31 @@ export default class HtmlGenerator {
     }
 
     makeHtml(data) {
-        this.prepContent(data);
-        this.exportContent();
+        try{
+            this.checkData(data)
+            this.prepContent(data);
+            this.exportContent();
+        }catch(err){
+            throw new Error(err);
+        }
+       
+    }
+
+    checkData(data){
+        if(data != null){
+            return true;
+        }else{
+            throw new Error("data feed is empty");
+
+        }
     }
 
 
     prepContent(data) {
+        
         let source = fs.readFileSync(inFile, 'utf8');
         let template = handlebars.compile(source, { stric: true });
-        result = template();
+        result = template(data);
     }
 
  

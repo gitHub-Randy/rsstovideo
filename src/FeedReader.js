@@ -9,8 +9,14 @@ export default class FeedReader {
         parser = new Parser();
         url = process.env.RSS_URL;
     }
-    async RetrieveData(){
-        feed = await parser.parseURL(url);
-        return feed;
+    async RetrieveData() {
+        try {
+            feed = await parser.parseURL(url);
+            return feed;
+        } catch (err) {
+            console.log("Could not retrieve feed");
+            throw new Error(err);
+        }
+
     }
 }

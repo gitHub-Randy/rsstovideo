@@ -13,10 +13,16 @@ let screenShotMaker = new ElementScreenTaker();
 let movieMaker = new MovieMaker();
 let feed;
 async function makeNews() {
-    feed = await feedReader.RetrieveData();
-    htmlGenerator.makeHtml(feed);
-    let imagePath =  await screenShotMaker.takeScreenShots();
-     await movieMaker.makeMovie(imagePath);
+    try{
+        feed = await feedReader.RetrieveData();
+        htmlGenerator.makeHtml(feed);
+        let imagePath =  await screenShotMaker.takeScreenShots();
+        // await movieMaker.makeMovie(imagePath);
+    }catch(err){
+        console.log(err)
+    }
+    
+   
 }
 makeNews();
 

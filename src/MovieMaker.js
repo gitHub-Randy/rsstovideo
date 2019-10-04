@@ -14,12 +14,18 @@ export default class MovieMaker {
     // path is != empty
     //aantal seconden laten isntellen
     async makeMovie(path) {
-        command
+        try{
+            command
             .input(path + '%1d.png')
             .inputFPS(1 / 10)
             .output(process.env.VIDEO_OUTPUT_PATH+'//'+process.env.SCENE_NAME+'.mp4')
             .outputFPS(30)
             .noAudio()
             .run();
+        }catch(err){
+            console.log("could not make video of rss feed!");
+            throw new Error(err);
+        }
+       
     }
 }
