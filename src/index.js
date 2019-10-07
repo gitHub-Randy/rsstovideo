@@ -22,7 +22,6 @@ async function makeNews() {
         feed = await feedReader.RetrieveData(process.env.RSS_URL);
         htmlGenerator.makeHtml(feed);
         let imagePath =  await screenShotMaker.takeScreenShots();
-        console.log(imagePath);
         await movieMaker.makeMovie(imagePath);
     }catch(err){
         console.log(err)
