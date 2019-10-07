@@ -10,9 +10,7 @@ export default class MovieMaker {
         this.time = value;
     }
 
-    // takes each screenshot and makes a video from it
-    // path is != empty
-    //aantal seconden laten isntellen
+    // using ffmepg takes the screenshots with the given name and makes 1 video of it.
     async makeMovie(path) {
         try{
             command

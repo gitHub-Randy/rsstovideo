@@ -1,6 +1,6 @@
 
 import FeedReader from "../src/FeedReader";
-it('retrieveData() retrieves feed', async () => {
+it('retrieveData() returns not null', async () => {
     let f = new FeedReader();
     try{
         let url = "https://nu.nl/rss/Algemeen";
@@ -17,8 +17,8 @@ it('retrieveData() throws error when url is invalid', async () => {
     let f = new FeedReader();
     try {
       let err = await f.RetrieveData();
+      expect(f.RetrieveData()).toThrow(error);
     } catch (error) {
-        expect(error).not.toBeNull();
     }
 });
 

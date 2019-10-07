@@ -11,11 +11,11 @@ export default class ElementScreenTaker {
     }
 
 
-    // takes a screen shot from each newsarticle on the generated html page'
-    //test: returns image Path
-    //aantal plaatjes maken via varible
+    
+    //generates the screenshots of the generated html file
     async takeScreenShots() {
         try {
+            url = process.cwd() + `\\src\\test.html`;
             await this.getCssSelectors(process.env.selector);
             let time = new Date();
             let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
@@ -30,13 +30,20 @@ export default class ElementScreenTaker {
 
     }
 
+    // makes for each item in the html a screenshot
+    // also removes the item before and after the item thats needs to be captured
     async captureScreens(outputName, index) {
-        await captureWebsite.file(url, `${process.env.IMAGE_PATH + '//' + outputName + '_' + index}.png`, {
-            waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
-                `#${id[index - 1]}`,
-                `#${id[index + 1]}`
-            ]
-        });
+        try{
+            await captureWebsite.file(url, `${process.env.IMAGE_PATH + '//' + outputName + '_' + index}.png`, {
+                waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
+                    `#${id[index - 1]}`,
+                    `#${id[index + 1]}`
+                ]
+            });
+        }catch(error){
+            throw new Error(error);
+        }
+        
 
     }
 
@@ -51,9 +58,7 @@ export default class ElementScreenTaker {
     setUrl(u){
         url = u;
     }
-    //test: id != null
-
-    //variable toe voegen i.e. .card etc
+    // gets the css selector names(.card_0, .card_1 etc.)
     async getCssSelectors(selector) {
         try {
             const browser = await puppeteer.launch({ headless: false });

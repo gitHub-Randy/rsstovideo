@@ -8,6 +8,8 @@ export default class FeedReader {
     constructor() {
         parser = new Parser();
     }
+
+    // retrieves rss feed and returns it in json format
     async RetrieveData(url) {
         try {
             feed =  parser.parseURL(url);

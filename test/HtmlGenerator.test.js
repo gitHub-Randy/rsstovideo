@@ -1,49 +1,79 @@
 import FeedReader from "../src/FeedReader";
 
 import HtmlGenerator from "../src/HtmlGenerator";
-it('makeHtml() throws Error', async () => {
-    let h = new HtmlGenerator();
-    let data = null;
-    try {
-        h.makeHtml(data);
-    } catch (error) {
-        console.log("ERROR HAPPEND YAY!")
+it('checkData() throws error when feed is empty', () => {
+    let failingDataChecker = new HtmlGenerator();
+    expect(() => {
+        failingDataChecker.checkData();
+    }).toThrow();
+});
+
+it('checkData() returns true when feed is not empty', () => {
+    let dataChecker = new HtmlGenerator();
+    let value = dataChecker.checkData({"items": "testItem"})
+    expect(value).not.toBeNull();
+});
+
+
+
+
+
+
+
+it('prepcontent makes result', () => {
+    let prepcontent = new HtmlGenerator();
+    prepcontent.prepContent(
+        {
+            "items": "test Item",
+            "title": "test Title",
+            "content": "test Content"
+        });
+    expect(prepcontent.result).not.toBeNull();
+})
+
+// 
+it('prepcontent() throws error when template has errors', () => {
+    let failingPrepContent = new HtmlGenerator();
+    failingPrepContent.InFile = "./testing_template_broken.hbs";
+    console.log(failingPrepContent.InFile);
+    try{
+        failingPrepContent.prepContent( {
+            "items": "test Item",
+            "title": "test Title",
+            "content": "test Content"
+        });
+    }catch(error){
         expect(error).not.toBeNull();
     }
-
-});
-
-it('result != empty', async () => {
-    let f = new FeedReader();
-    let h = new HtmlGenerator();
-
-    try {
-        let url = "https://nu.nl/rss/Algemeen";
-        let feed = await f.RetrieveData(url);
-        h.makeHtml(feed);
-        expect(h.result).not.toBeNull();
-    }
-    catch (error) {
-        console.log(error);
-    }
 });
 
 
-it('handlebars thrwos error when tempalte is faulty', async () => {
-    let f = new FeedReader();
-    let h = new HtmlGenerator();
+// exportContent throws error when params is wrong
 
-    try {
-        h.inFile = './testing_template_broken.hbs';
-        let url = "https://nu.nl/rss/Algemeen";
-        let feed = await f.RetrieveData(url);
-        h.makeHtml(feed);
-    }
-    catch (error) {
+it('exportContent() throws error when output is wrong', () => {
+    let failingExportContent = new HtmlGenerator();
+    failingExportContent.outFile = "./nonsense";
+    try{
+        failingExportContent.exportContent();
+    }catch(error){
         expect(error).not.toBeNull();
     }
 });
 
+
+
+it('makeHtml() succeds ', () => {
+    let failingData = new HtmlGenerator();
+    try{
+        failingData.makeHtml( {
+            "items": "test Item",
+            "title": "test Title",
+            "content": "test Content"
+        });
+    }catch(error){
+        expect(error).toBeNull();
+    }
+})
 
 
 
