@@ -29,6 +29,22 @@ it('result != empty', async () => {
 });
 
 
+it('handlebars thrwos error when tempalte is faulty', async () => {
+    let f = new FeedReader();
+    let h = new HtmlGenerator();
+
+    try {
+        h.inFile = './testing_template_broken.hbs';
+        let url = "https://nu.nl/rss/Algemeen";
+        let feed = await f.RetrieveData(url);
+        h.makeHtml(feed);
+    }
+    catch (error) {
+        expect(error).not.toBeNull();
+    }
+});
+
+
 
 
 

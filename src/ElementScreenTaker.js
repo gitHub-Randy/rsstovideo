@@ -31,7 +31,6 @@ export default class ElementScreenTaker {
     }
 
     async captureScreens(outputName, index) {
-        console.log(url);
         await captureWebsite.file(url, `${process.env.IMAGE_PATH + '//' + outputName + '_' + index}.png`, {
             waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
                 `#${id[index - 1]}`,
@@ -43,6 +42,10 @@ export default class ElementScreenTaker {
 
     getId() {
         return id;
+    }
+
+    setId(num) {
+         id = num;
     }
 
     setUrl(u){
