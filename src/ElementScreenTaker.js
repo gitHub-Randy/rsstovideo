@@ -5,7 +5,8 @@ let puppeteer = require('puppeteer');
 let cheerio = require('cheerio');
 let dateFormat = require('dateformat');
 let id = [];
-let url = process.cwd() + process.env.OUTPUT_HTML_FILE;
+let url = 'file://'+ process.cwd() +  process.env.OUTPUT_HTML_FILE;
+
 
 export default class ElementScreenTaker {
     constructor(value) {
@@ -59,8 +60,9 @@ export default class ElementScreenTaker {
     // gets the css selector names(.card_0, .card_1 etc.)
     async getCssSelectors(selector) {
         try {
-            const browser = await puppeteer.launch({ headless: false });
+            const browser = await puppeteer.launch({args: ['--no-sandbox']});
             const page = await browser.newPage();
+		console.log(url);
             await page.goto(url);
             let content = await page.content();
             browser.close();

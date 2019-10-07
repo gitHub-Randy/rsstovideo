@@ -40,7 +40,8 @@ export default class HtmlGenerator {
             let template = handlebars.compile(source, { stric: true });
             result = template(data);
         }catch(error){
-            throw new Error(error);
+   		console.log("prepContent went wrong");
+		throw new Error(error);
         }
       
     }
@@ -50,8 +51,9 @@ export default class HtmlGenerator {
     // exports the html file on to the file system
     exportContent() {
         try{
-            fs.writeFileSync(outFile, result);
+            fs.writeFileSync('RssFeedPage.html', result);
         }catch(error){
+		console.log("export went wrong");
             throw new Error(error);
         }
        
