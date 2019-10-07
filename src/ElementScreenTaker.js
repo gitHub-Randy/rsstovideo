@@ -3,26 +3,24 @@ import 'dotenv/config';
 let captureWebsite = require('capture-website');
 let puppeteer = require('puppeteer');
 let cheerio = require('cheerio');
+let dateFormat = require('dateformat');
 let id = [];
-let url = process.cwd() + `\\src\\test.html`;
+let url = process.cwd() + process.env.OUTPUT_HTML_FILE;
 
 export default class ElementScreenTaker {
     constructor(value) {
     }
-
-
-    
     //generates the screenshots of the generated html file
     async takeScreenShots() {
         try {
-            url = process.cwd() + `\\src\\test.html`;
             await this.getCssSelectors(process.env.selector);
             let time = new Date();
-            let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
+            let t = dateFormat(time, "dd_mm_yyyy_HH_MM");
+            // let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
             for (let index = 0; index < id.length; index++) {
                 await this.captureScreens(t,index);
             }
-            return `${process.env.IMAGE_PATH + '//' + t + '_'}`;
+            return `${process.env.IMAGE_PATH}` + '//' + t + '_';
         } catch (err) {
             console.log("could not create screenshots of rss feed!");
             throw new Error(err);
@@ -34,7 +32,7 @@ export default class ElementScreenTaker {
     // also removes the item before and after the item thats needs to be captured
     async captureScreens(outputName, index) {
         try{
-            await captureWebsite.file(url, `${process.env.IMAGE_PATH + '//' + outputName + '_' + index}.png`, {
+            await captureWebsite.file(url, `${process.env.IMAGE_PATH}` + '//' + outputName + '_' + index.png, {
                 waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
                     `#${id[index - 1]}`,
                     `#${id[index + 1]}`

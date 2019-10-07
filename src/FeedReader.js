@@ -12,7 +12,7 @@ export default class FeedReader {
     // retrieves rss feed and returns it in json format
     async RetrieveData(url) {
         try {
-            feed =  parser.parseURL(url);
+            feed =  await parser.parseURL(url);
             return feed;
         } catch (err) {
             console.log("Could not retrieve feed");

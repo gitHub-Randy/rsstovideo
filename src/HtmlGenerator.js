@@ -7,8 +7,8 @@ let outFile;
 let result;
 export default class HtmlGenerator {
     constructor(value) {
-        inFile = './/src//test.hbs';
-        outFile = './/src/test.html';
+        inFile = process.env.TEMPLATE_FILE;
+        outFile = process.env.OUTPUT_HTML_FILE;
     }
 
     // generates an html file
