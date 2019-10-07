@@ -51,7 +51,6 @@ export default class HtmlGenerator {
     exportContent() {
         try{
             fs.writeFileSync(outFile, result);
-            console.log(`File written to ${outFile}`);
         }catch(error){
             throw new Error(error);
         }

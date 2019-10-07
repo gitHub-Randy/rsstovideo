@@ -15,7 +15,7 @@ export default class ElementScreenTaker {
         try {
             await this.getCssSelectors(process.env.selector);
             let time = new Date();
-            let t = dateFormat(time, "dd_mm_yyyy_HH_MM");
+            let t = dateFormat(time, "dd_mm_yyyy_HH_MM_ss");
             // let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
             for (let index = 0; index < id.length; index++) {
                 await this.captureScreens(t,index);
@@ -32,7 +32,7 @@ export default class ElementScreenTaker {
     // also removes the item before and after the item thats needs to be captured
     async captureScreens(outputName, index) {
         try{
-            await captureWebsite.file(url, `${process.env.IMAGE_PATH}` + '//' + outputName + '_' + index.png, {
+            await captureWebsite.file(url, `${process.env.IMAGE_PATH}` + '//' + outputName + '_' + index+'.png', {
                 waitForElement: `#${id[index]}`, element: `#${id[index]}`, hideElements: [
                     `#${id[index - 1]}`,
                     `#${id[index + 1]}`
