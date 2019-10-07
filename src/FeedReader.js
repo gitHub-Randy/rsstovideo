@@ -7,11 +7,12 @@ let url;
 export default class FeedReader {
     constructor() {
         parser = new Parser();
-        url = process.env.RSS_URL;
     }
-    async RetrieveData() {
+
+    // retrieves rss feed and returns it in json format
+    async RetrieveData(url) {
         try {
-            feed = await parser.parseURL(url);
+            feed =  await parser.parseURL(url);
             return feed;
         } catch (err) {
             console.log("Could not retrieve feed");

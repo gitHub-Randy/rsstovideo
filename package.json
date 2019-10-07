@@ -25,6 +25,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "capture-website": "^0.4.0",
     "cheerio": "^1.0.0-rc.3",
+    "dateformat": "^3.0.3",
     "dotenv": "^8.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "handlebars": "^4.4.2",

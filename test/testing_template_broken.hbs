@@ -16,7 +16,8 @@
 <body>
     <h1> News </h1>
     <div id="items">
-    </div>
-</body>
-
-</html>
+        {{#each items}}
+        <div class="card mb-3" id="card_{{@index}}">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{enclosure.url}}" class="card-img" alt="">
