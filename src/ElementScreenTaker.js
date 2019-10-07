@@ -16,7 +16,6 @@ export default class ElementScreenTaker {
             await this.getCssSelectors(process.env.selector);
             let time = new Date();
             let t = dateFormat(time, "dd_mm_yyyy_HH_MM");
-            // let t = time.getDate() + "_" + time.getMonth() + "_" + time.getFullYear() + "_" + time.getHours() + "_" + time.getMinutes();
             for (let index = 0; index < id.length; index++) {
                 await this.captureScreens(t,index);
             }
