@@ -28,7 +28,7 @@
     "dateformat": "^3.0.3",
     "dotenv": "^8.1.0",
     "fluent-ffmpeg": "^2.1.2",
-    "handlebars": "^4.4.2",
+    "handlebars": "^4.5.3",
     "install": "^0.13.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
